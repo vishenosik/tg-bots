@@ -4,8 +4,10 @@ import (
 	"context"
 	"io"
 
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/google/uuid"
 	"github.com/vishenosik/tg-bots/internal/entity"
+	"github.com/vishenosik/tg-bots/internal/infra/telegram"
 )
 
 type FileProvider interface {
@@ -31,8 +33,18 @@ func NewPhotoUsecase(
 	}
 }
 
-func (pu *PhotoUsecase) SavePhotoWithInfo(r io.Reader, info entity.SenderInfo) (id string, err error) {
-	id, err = pu.file.SaveFile(context.Background(), r, uuid.NewString()+".jpg")
+func (pu *PhotoUsecase) SavePhotoWithInfo(
+	bot *tgbotapi.BotAPI,
+	fileID string,
+	info entity.SenderInfo,
+) (string, error) {
+
+	r, err := telegram.GetFile(bot, fileID)
+	if err != nil {
+		return "", err
+	}
+
+	id, err := pu.file.SaveFile(context.Background(), r, uuid.NewString()+".jpg")
 	if err != nil {
 		return "", err
 	}
