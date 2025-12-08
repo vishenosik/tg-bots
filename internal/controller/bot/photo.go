@@ -12,7 +12,6 @@ import (
 
 type PhotoProvider interface {
 	SavePhotoWithInfo(
-		bot *tgbotapi.BotAPI,
 		fileID string,
 		info entity.SenderInfo,
 	) (id string, err error)
@@ -73,7 +72,7 @@ func (p *photoApi) save(bot *tgbotapi.BotAPI, msg *tgbotapi.Message) error {
 	}
 	from := msg.From
 
-	id, err := p.provider.SavePhotoWithInfo(bot, photo.FileID, entity.SenderInfo{
+	id, err := p.provider.SavePhotoWithInfo(photo.FileID, entity.SenderInfo{
 		UserID:    from.ID,
 		UserName:  from.UserName,
 		FirstName: from.FirstName,

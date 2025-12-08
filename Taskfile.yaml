@@ -8,4 +8,4 @@ tasks:
 
   run-local:
     desc: Run main application
-    cmd: go run ./cmd/photo-saver
+    cmd: go run ./cmd/pairs-bot

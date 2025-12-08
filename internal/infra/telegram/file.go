@@ -6,20 +6,33 @@ import (
 	"net/http"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	"github.com/vishenosik/gocherry/pkg/bot"
 )
 
-func GetFile(bot *tgbotapi.BotAPI, id string) (io.Reader, error) {
-	file, err := bot.GetFile(tgbotapi.FileConfig{FileID: id})
+type TgApi struct {
+	bot *tgbotapi.BotAPI
+}
+
+func NewTgApiEnv() (*TgApi, error) {
+	tgBot, err := bot.NewBotAPIEnv()
 	if err != nil {
 		return nil, err
 	}
 
-	fileURL, err := bot.GetFileDirectURL(file.FileID)
+	return &TgApi{bot: tgBot.Bot()}, nil
+}
+
+func (tg *TgApi) GetFile(id string) (io.Reader, error) {
+	file, err := tg.bot.GetFile(tgbotapi.FileConfig{FileID: id})
 	if err != nil {
 		return nil, err
 	}
 
-	// 2. download the file
+	fileURL, err := tg.bot.GetFileDirectURL(file.FileID)
+	if err != nil {
+		return nil, err
+	}
+
 	resp, err := http.Get(fileURL)
 	if err != nil {
 		return nil, err

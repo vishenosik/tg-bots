@@ -73,11 +73,13 @@ func NewApp(ctx context.Context) (*gocherry.App, error) {
 	// API
 
 	photosaver := botapi.NewPhotoApi(photousecase)
+	affirmations := botapi.NewAffirmationsApi()
 
 	// SERVICES
 
 	telegramBot, err := bot.NewBotAPIEnv(
 		photosaver,
+		affirmations,
 	)
 	if err != nil {
 		return nil, err

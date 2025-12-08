@@ -4,7 +4,6 @@ import (
 	"context"
 	"io"
 
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/google/uuid"
 	"github.com/vishenosik/tg-bots/internal/entity"
 	"github.com/vishenosik/tg-bots/internal/infra/telegram"
@@ -19,27 +18,32 @@ type InfoProvider interface {
 }
 
 type PhotoUsecase struct {
-	file FileProvider
-	info InfoProvider
+	tgApi *telegram.TgApi
+	file  FileProvider
+	info  InfoProvider
 }
 
 func NewPhotoUsecase(
 	file FileProvider,
 	info InfoProvider,
 ) *PhotoUsecase {
+	tgApi, err := telegram.NewTgApiEnv()
+	if err != nil {
+		panic(err)
+	}
 	return &PhotoUsecase{
-		file: file,
-		info: info,
+		tgApi: tgApi,
+		file:  file,
+		info:  info,
 	}
 }
 
 func (pu *PhotoUsecase) SavePhotoWithInfo(
-	bot *tgbotapi.BotAPI,
 	fileID string,
 	info entity.SenderInfo,
 ) (string, error) {
 
-	r, err := telegram.GetFile(bot, fileID)
+	r, err := pu.tgApi.GetFile(fileID)
 	if err != nil {
 		return "", err
 	}
