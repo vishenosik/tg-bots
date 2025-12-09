@@ -5,8 +5,8 @@ import (
 	"log/slog"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
-	"github.com/vishenosik/gocherry/pkg/bot"
 	"github.com/vishenosik/gocherry/pkg/logs"
+	bot "github.com/vishenosik/tg-bot-engine"
 	"github.com/vishenosik/tg-bots/internal/entity"
 )
 

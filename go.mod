@@ -7,6 +7,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/vishenosik/file-svc-sdk v0.0.3
 	github.com/vishenosik/gocherry v0.0.7
+	github.com/vishenosik/tg-bot-engine v0.0.0-20251209110212-396439d09113
 )
 
 require (

@@ -60,6 +60,8 @@ github.com/vishenosik/file-svc-sdk v0.0.3 h1:f0iuWixQwXgC0e+VN91XwEoSroEFSm0m9My
 github.com/vishenosik/file-svc-sdk v0.0.3/go.mod h1:rIJRTFbYu+OURKgaAppR4rV7fZQ2e08nSGstpzHRp7Y=
 github.com/vishenosik/gocherry v0.0.7 h1:sa5sUMKoJmtoqtLce/Kny/fPn50DPJQWeM0A+5hZKLA=
 github.com/vishenosik/gocherry v0.0.7/go.mod h1:ulyZsHDKdtb3M12317efEyH2I8kY7rekkE2eWJPQCqc=
+github.com/vishenosik/tg-bot-engine v0.0.0-20251209110212-396439d09113 h1:jcjAk0AYZbMTmEf2yViV9zpQFZ/dsH0uRhKPkJfUxq0=
+github.com/vishenosik/tg-bot-engine v0.0.0-20251209110212-396439d09113/go.mod h1:xxb51T1lD/ma/1G/dFy5ZjQuiiUQEsfKrhgUZEcTs5A=
 go.opentelemetry.io/auto/sdk v1.1.0 h1:cH53jehLUN6UFLY71z+NDOiNJqDdPRaXzTel0sJySYA=
 go.opentelemetry.io/auto/sdk v1.1.0/go.mod h1:3wSPjt5PWp2RhlCcmmOial7AvC4DQqZb7a7wCow3W8A=
 go.opentelemetry.io/otel v1.37.0 h1:9zhNfelUvx0KBfu/gb+ZgeAfAgtWrfHJZcAqFC228wQ=

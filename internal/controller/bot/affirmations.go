@@ -5,8 +5,9 @@ import (
 	"log/slog"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
-	"github.com/vishenosik/gocherry/pkg/bot"
 	"github.com/vishenosik/gocherry/pkg/logs"
+
+	bot "github.com/vishenosik/tg-bot-engine"
 )
 
 type affirmationsApi struct {
@@ -20,6 +21,7 @@ func NewAffirmationsApi() *affirmationsApi {
 }
 
 func (a *affirmationsApi) Route(tb *bot.TelegramBot) {
+
 	tb.Route("send_affirmations_daily", a.sendAffirmationsDailyHandler())
 }
 
@@ -27,15 +29,6 @@ func (a *affirmationsApi) Route(tb *bot.TelegramBot) {
 func (a *affirmationsApi) sendAffirmationsDailyHandler() bot.HandlerFunc {
 
 	return func(bot *tgbotapi.BotAPI, msg *tgbotapi.Message) {
-
-		// err := a.sendDailyAffirmation(bot, msg)
-		// if err != nil {
-		// 	a.log.Error("failed to send affirmation", logs.Error(err))
-		// 	resp := tgbotapi.NewMessage(msg.Chat.ID, "❌ Error while sending affirmation, try again later.")
-		// 	resp.ReplyToMessageID = msg.MessageID
-		// 	_, _ = bot.Send(resp)
-		// 	return
-		// }
 
 		greet := "Привет, сладкие булочки, вот вам аффирмация дня"
 		affirmation := "У вас все получится ❤️"

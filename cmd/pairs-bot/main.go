@@ -14,8 +14,8 @@ import (
 	"github.com/vishenosik/tg-bots/internal/usecase"
 
 	"github.com/vishenosik/gocherry"
-	"github.com/vishenosik/gocherry/pkg/bot"
 	"github.com/vishenosik/gocherry/pkg/logs"
+	bot "github.com/vishenosik/tg-bot-engine"
 
 	_ctx "github.com/vishenosik/gocherry/pkg/context"
 )
@@ -77,13 +77,13 @@ func NewApp(ctx context.Context) (*gocherry.App, error) {
 
 	// SERVICES
 
-	telegramBot, err := bot.NewBotAPIEnv(
-		photosaver,
-		affirmations,
-	)
+	telegramBot, err := bot.NewBotAPIEnv()
 	if err != nil {
 		return nil, err
 	}
+
+	photosaver.Route(telegramBot)
+	affirmations.Route(telegramBot)
 
 	app, err := gocherry.NewApp()
 	if err != nil {

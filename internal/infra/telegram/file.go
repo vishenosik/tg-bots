@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
-	"github.com/vishenosik/gocherry/pkg/bot"
+	bot "github.com/vishenosik/tg-bot-engine"
 )
 
 type TgApi struct {
